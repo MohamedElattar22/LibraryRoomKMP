@@ -1,0 +1,10 @@
+workflows:
+  macos-debug:
+    name: macOS Debugging
+    instance_type: mac_mini_m2
+    environment:
+      vars:
+        ENABLE_SSH: true
+    scripts:
+      - name: Print SSH access information
+        script: echo "SSH will be available when the build starts."
