@@ -20,6 +20,7 @@ class SpeechToTextManagerIos : SpeechToText {
 
     @OptIn(ExperimentalForeignApi::class)
     override fun startListening(onResult: (String) -> Unit, onError: (Throwable) -> Unit) {
+
         //SFSpeechRecognizerAuthorizationStatusAuthorized
         // Request authorization if needed
         SFSpeechRecognizer.requestAuthorization { authStatus ->
@@ -42,7 +43,7 @@ class SpeechToTextManagerIos : SpeechToText {
             recognitionTask =
                 speechRecognizer?.recognitionTaskWithRequest(recognitionRequest) { result, error ->
                     if (error != null) {
-                        onError(Exception(error.localizedDescription))
+                        onError(Exception(error.localizedFailureReason))
                         return@recognitionTaskWithRequest
                     }
                     result?.let {
